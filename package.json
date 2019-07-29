@@ -1,0 +1,26 @@
+{
+  "name": "react-bot",
+  "version": "1.0.6",
+  "description": "React component for chatbot UI",
+  "license": "MIT",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "now-build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "prettier": "prettier \"{,**/}*.js\" --write"
+  },
+  "dependencies": {
+    "react-entypo": "^1.3.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "peerDependencies": {
+    "react": "16.x"
+  },
+  "devDependencies": {
+    "prettier": "^1.16.4",
+    "react-scripts": "^1.1.4"
+  }
+}

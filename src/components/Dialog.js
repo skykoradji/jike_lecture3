@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import DialogGroup from './Message';
+import Message from './Message';
 
 /**
  * 2. TODO - update the ref to use createRef()
@@ -20,8 +20,8 @@ class Dialog extends Component {
     return (
       <section className="messages-wrapper" style={{ height: `${dialogHeight}px` }}>
         <div className="messages">
-          {messages.map((group, i) => (
-            <DialogGroup key={i} group={group} />
+          {messages.map((message, i) => (
+            <Message key={i} message={message} />
           ))}
           <div style={{ float: 'left', clear: 'both' }} ref={el => (this.scrollTarget = el)} />
         </div>

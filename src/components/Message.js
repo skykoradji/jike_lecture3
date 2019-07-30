@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
 
-const Bubble = (text) => (
-  <div className="message" style={{ margin: 0 }}>
-    {text === null ? <TypingAnimation /> : <p>{text}</p>}
-  </div>
-);
-
 const TypingAnimation = () => (
   <div id="wave">
     <span className="dot" />
@@ -20,13 +14,12 @@ const TypingAnimation = () => (
 class Message extends Component {
   
   render() {
-    const { messages, isUser } = this.props;
-
+    const { message, isUser } = this.props;
     return (
       <div className={`group group-${isUser ? 'user' : 'bot'}`}>
-        { messages.map((text, i) => (
-          <Bubble key={i} text={text} />
-        ))}
+        <div className="message" style={{ margin: 0 }}>
+          {message === null ? <TypingAnimation /> : <p>{message}</p>}
+        </div>
       </div>
     );
   }

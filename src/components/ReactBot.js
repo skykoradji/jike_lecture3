@@ -11,6 +11,7 @@ export default class ReactBot extends Component {
     this.state = {
       title: props.title,
       messages: [],
+      dialogHeight: 300,
       isOpen: props.isOpen !== undefined ? props.isOpen : true,
       isMinimized: props.isMinimized !== undefined ? props.isMinimized : true
     };

@@ -6,8 +6,13 @@ import Message from './Message';
  * 2. TODO - update the ref to use createRef()
  */
 class Dialog extends Component {
+  constructor() {
+    super();
+    this.scrollTarget = React.createRef();
+  }
+  
   scrollToBottom() {
-    const end = ReactDOM.findDOMNode(this.scrollTarget);
+    const end = ReactDOM.findDOMNode(this.scrollTarget.current);
     end.scrollIntoView({ behavior: 'smooth' });
   }
 
@@ -23,7 +28,7 @@ class Dialog extends Component {
           {messages.map((message, i) => (
             <Message key={i} message={message} />
           ))}
-          <div style={{ float: 'left', clear: 'both' }} ref={el => (this.scrollTarget = el)} />
+          <div style={{ float: 'left', clear: 'both' }} ref={this.scrollTarget} />
         </div>
       </section>
     );

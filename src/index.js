@@ -13,10 +13,12 @@ class APP extends Component {
     this.handleToggle = this.handleToggle.bind(this);
   }
 
+  reactBotRef = (ref) => {
+    this.chatRef = ref;
+  }
+
   handleToggle() {
-    if (this.chat) {
-      this.chat.handleToggle();
-    }
+    this.chatRef.handleToggle();
   }
 
   render() {
@@ -28,7 +30,7 @@ class APP extends Component {
           dialogHeightMax={350}
           isMinimized={false}
           title="React Interview Bot"
-          ref={el => (this.chat = el)}
+          ref={this.reactBotRef}
         />
       </div>
     );

@@ -105,13 +105,13 @@
   font-weight: var(--font-weight);
 }
 .text-form {
-  border-top: 1px solid var(--message-color);
+  border-top: 1px solid var(--primary-color);
   display: flex;
   height: 35px;
   width: 100%;
 }
 input::-webkit-input-placeholder {
-  color: var(--message-color) !important;
+  color: var(--primary-color) !important;
 }
 .text-input {
   border-style: none;

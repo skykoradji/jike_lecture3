@@ -17,7 +17,7 @@ export default class ReactBot extends Component {
     };
 
     this.handleResize = this.handleResize.bind(this);
-
+    this.handleSendMessage = this.handleSendMessage.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
   }
 
@@ -25,6 +25,13 @@ export default class ReactBot extends Component {
    * 11. TODO - add send message
    * 
    */
+
+  handleSendMessage(message) {
+    this.setState((prevState) => {
+      prevState.messages.push(message);
+      return prevState;
+    });
+  }
 
   handleResize(e) {
     const window = e.target || e;
@@ -51,34 +58,33 @@ export default class ReactBot extends Component {
   /**
    * 9. TODO - add component resize when component is mounted
    */
-
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize(window);
+  }
   /**
    * 10. TODO - remove component resize when component is unmounted
    */
-
+  componentWillUnMount() {
+    window.removeEventListener('resize');
+  }
 
   render() {
-    /**
-     * 8. TODO - change to use destructing
-     */
+    const { isMinimized, title, isOpen, dialogHeight, messages } = this.state;
     return (
       <div
         className="container"
-        style={this.state.isMinimized ? { display: 'block' } : { display: 'none' }}
+        style={isMinimized ? { display: 'block' } : { display: 'none' }}
       >
-        <Header title={this.state.title} onClick={this.handleToggle} />
+        <Header title={title} onClick={this.handleToggle} />
         <div
-          style={
-            this.state.isOpen
-              ? { minHeight: `${this.state.dialogHeight}px` }
+          style={ isOpen
+              ? { minHeight: `${dialogHeight}px` }
               : { maxHeight: 0, overflow: 'hidden' }
           }
         >
-          <Dialog
-            messages={this.state.messages}
-            dialogHeight={this.state.dialogHeight}
-          />
-          <Input />
+          <Dialog messages={messages} dialogHeight={dialogHeight} />
+          <Input handleSendMessage={this.handleSendMessage} />
         </div>
       </div>
     );

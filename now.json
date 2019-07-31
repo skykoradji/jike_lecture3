@@ -1,31 +1,11 @@
 {
   "version": 2,
   "name": "react-ai",
-  "alias": "react-ai-jike.now.sh",
+  "alias": "react-lecture4-jike.now.sh",
   "builds": [
     {
       "src": "package.json",
-      "use": "@now/static-build",
-      "config": { "distDir": "build" }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "headers": { "cache-control": "s-maxage=31536000,immutable" },
-      "dest": "/static/$1"
-    },
-    { "src": "/favicon.ico", "dest": "/favicon.ico" },
-    { "src": "/asset-manifest.json", "dest": "/asset-manifest.json" },
-    {
-      "src": "/service-worker.js",
-      "headers": { "cache-control": "s-maxage=0" },
-      "dest": "/service-worker.js"
-    },
-    {
-      "src": "/(.*)",
-      "headers": { "cache-control": "s-maxage=0" },
-      "dest": "/index.html"
+      "use": "@now/next"
     }
   ]
 }

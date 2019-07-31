@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import Header from './Header';
 import Dialog from './Dialog';
 import Input from './Input';
-import '../css/main.css';
+import '../static/css/main.css';
 
 
 export default class ReactBot extends Component {
@@ -22,15 +23,45 @@ export default class ReactBot extends Component {
   }
 
   /**
+   * 9. TODO - add component resize when component is mounted
+   */
+  async componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize(window);
+    await this.getWelcome();
+  }
+  /**
+   * 10. TODO - remove component resize when component is unmounted
+   */
+  componentWillUnMount() {
+    window.removeEventListener('resize');
+  }
+
+  async getWelcome() {
+    // get welcome event
+    const response = await axios.post('/dialogflow/event', { event: 'WELCOME' });
+    const { contents, richResponses } = response.data;
+    this.appendMessage({ contents, richResponses, isUser: false });
+  }
+
+  /**
    * 11. TODO - add send message
    * 
    */
-
-  handleSendMessage(message) {
+  appendMessage = (message) => {
     this.setState((prevState) => {
       prevState.messages.push(message);
       return prevState;
     });
+  }
+
+  async handleSendMessage(message) {
+    // customer send message
+    this.appendMessage({ contents: [ message ], isUser: true });
+    // response message from server
+    const response = await axios.post('/dialogflow/query', { message });
+    const { contents, richResponses } = response.data;
+    this.appendMessage({ contents, richResponses, isUser: false});
   }
 
   handleResize(e) {
@@ -55,20 +86,6 @@ export default class ReactBot extends Component {
     }
   }
 
-  /**
-   * 9. TODO - add component resize when component is mounted
-   */
-  componentDidMount() {
-    window.addEventListener('resize', this.handleResize);
-    this.handleResize(window);
-  }
-  /**
-   * 10. TODO - remove component resize when component is unmounted
-   */
-  componentWillUnMount() {
-    window.removeEventListener('resize');
-  }
-
   render() {
     const { isMinimized, title, isOpen, dialogHeight, messages } = this.state;
     return (
@@ -83,7 +100,7 @@ export default class ReactBot extends Component {
               : { maxHeight: 0, overflow: 'hidden' }
           }
         >
-          <Dialog messages={messages} dialogHeight={dialogHeight} />
+          <Dialog messages={messages} dialogHeight={dialogHeight} handleSendMessage={this.handleSendMessage} />
           <Input handleSendMessage={this.handleSendMessage} />
         </div>
       </div>

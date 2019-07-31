@@ -21,12 +21,12 @@ class Dialog extends Component {
   }
 
   render() {
-    const { dialogHeight, messages } = this.props;
+    const { dialogHeight, messages, handleSendMessage } = this.props;
     return (
       <section className="messages-wrapper" style={{ height: `${dialogHeight}px` }}>
         <div className="messages">
           {messages.map((message, i) => (
-            <Message key={i} message={message} />
+            <Message key={i} message={message} handleSendMessage={handleSendMessage} />
           ))}
           <div style={{ float: 'left', clear: 'both' }} ref={this.scrollTarget} />
         </div>

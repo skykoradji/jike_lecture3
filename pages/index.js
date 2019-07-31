@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 
-import ReactBot from './components/ReactBot';
-import './css/demo.css';
+import ReactBot from '../components/ReactBot';
+import '../static/css/demo.css';
 
 /**
  * 1. TODO - update to use function bind for the ref
@@ -24,12 +23,12 @@ class APP extends Component {
   render() {
     return (
       <div>
-        <h1>Simple React interview bot</h1>
+        <h1>Test</h1>
         <button onClick={this.handleToggle}>Toggle Chat</button>
         <ReactBot
           dialogHeightMax={350}
           isMinimized={false}
-          title="React Interview Bot"
+          title="Test"
           ref={this.reactBotRef}
         />
       </div>
@@ -37,4 +36,4 @@ class APP extends Component {
   }
 }
 
-render(<APP />, document.querySelector('#demo'));
+export default APP;

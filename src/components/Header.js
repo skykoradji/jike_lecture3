@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 /**
  * 4. TODO - update to use function component
  */

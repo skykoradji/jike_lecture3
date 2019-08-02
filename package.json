@@ -4,7 +4,7 @@
   "description": "React component for chatbot UI",
   "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "now-build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

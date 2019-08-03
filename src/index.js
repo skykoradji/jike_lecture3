@@ -29,6 +29,7 @@ class APP extends Component {
         <ReactBot
           dialogHeightMax={350}
           isMinimized={false}
+          isOpen={false}
           title="React Interview Bot"
           ref={this.reactBotRef}
         />

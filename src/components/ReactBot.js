@@ -64,6 +64,7 @@ export default class ReactBot extends Component {
   }
 
   handleResize(e) {
+    if(!this.state.isOpen) return;
     const window = e.target || e;
     const y = window.innerHeight;
     const header = document.querySelector('.container header');
@@ -87,6 +88,7 @@ export default class ReactBot extends Component {
 
   render() {
     const { isMinimized, title, isOpen, dialogHeight, messages } = this.state;
+    if(!isOpen) return null;
     return (
       <div
         className="container"
@@ -100,7 +102,7 @@ export default class ReactBot extends Component {
           }
         >
           <Dialog messages={messages} dialogHeight={dialogHeight} handleSendMessage={this.handleSendMessage} />
-          <Input handleSendMessage={this.handleSendMessage} />
+        { isOpen && <Input handleSendMessage={this.handleSendMessage} /> }
         </div>
       </div>
     );
